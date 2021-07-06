@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/samuelbagattin/grpc-chat"; // Don't forget to change!
+
+package grpc-chat;
+
+// The greeting service definition.
+service MessagesService {
+  // Sends a greeting
+  rpc Chat (stream Message) returns (stream Message) {}
+}
+
+// The request message containing the user's name.
+message Message {
+  string name = 1;
+  string content = 2;
+}
