@@ -60,4 +60,4 @@ jobs:
           path: grpc-chat-server_${{ env.SEMVER }}_linux_arm64
 
       - name: Create release
-        run: gh release create v${{ env.SEMVER }} 'grpc-chat*' -t v${{ env.SEMVER }}
+        run: gh release create v${{ env.SEMVER }} 'grpc-chat-server_${{ env.SEMVER }}_linux_arm64' 'grpc-chat-client_${{ env.SEMVER }}_linux_arm64' -t v${{ env.SEMVER }}
