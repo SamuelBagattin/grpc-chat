@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/google/uuid"
 	"google.golang.org/grpc"
 	"io"
 	"log"
 	"net"
+	"os"
 	"sync"
 
 	pb "github.com/samuelbagattin/grpc-chat/proto"
@@ -75,7 +77,7 @@ func (s *server) Chat(stream pb.MessagesService_ChatServer) error {
 }
 
 func main() {
-	lis, err := net.Listen("tcp", port)
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", os.Args[1]))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}

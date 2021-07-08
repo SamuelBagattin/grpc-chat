@@ -12,16 +12,19 @@ import (
 )
 
 const (
-	address     = "localhost:50051"
 	defaultName = "world"
 )
 
-var userName string
+var (
+	userName      string
+	serverAddress string
+)
 
 func main() {
-	userName = os.Args[1]
+	serverAddress = os.Args[1]
+	userName = os.Args[2]
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial(serverAddress, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
