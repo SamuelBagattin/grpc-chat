@@ -1,0 +1,63 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: gh cli auth
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - uses: actions/setup-dotnet@v1
+
+      - name: Install GitVersion
+        run: git fetch --unshallow && dotnet tool install --global GitVersion.Tool
+
+      - name: Get semver
+        id: semver
+        run: echo "SEMVER=$(dotnet gitversion | jq -r '.FullSemVer')" >> $GITHUB_ENV
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: Restore dependencies
+        run: go get ./...
+
+      - name: Build server linux arm64
+        run: go build -o grpc-chat-server_${{ env.SEMVER }}_linux_arm64 client.l ./cmd/server
+        env:
+          GOOS: linux
+          GOARCH: arm64
+
+      - name: Build client linux arm64
+        run: go build -o grpc-chat-client_${{ env.SEMVER }}_linux_arm64 ./cmd/client
+        env:
+          GOOS: linux
+          GOARCH: arm64
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: client
+          path: grpc-chat-client_${{ env.SEMVER }}_linux_arm64
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: server
+          path: grpc-chat-server_${{ env.SEMVER }}_linux_arm64
+
+      - name: Create release
+        run: gh release create v${{ env.SEMVER }} 'grpc-chat*' -t v${{ env.SEMVER }}
