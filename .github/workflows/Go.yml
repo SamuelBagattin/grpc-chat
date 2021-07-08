@@ -38,13 +38,13 @@ jobs:
         run: go get ./...
 
       - name: Build server linux arm64
-        run: go build -o grpc-chat-server_${{ env.SEMVER }}_linux_arm64 ./cmd/server
+        run: go build -o grpc-chat-server_${{ env.SEMVER }}_linux_arm64 ./cmd/grpc-chat-server
         env:
           GOOS: linux
           GOARCH: arm64
 
       - name: Build client linux arm64
-        run: go build -o grpc-chat-client_${{ env.SEMVER }}_linux_arm64 ./cmd/client
+        run: go build -o grpc-chat-client_${{ env.SEMVER }}_linux_arm64 ./cmd/grpc-chat
         env:
           GOOS: linux
           GOARCH: arm64
