@@ -10,7 +10,7 @@ import (
 	"os"
 	"sync"
 
-	pb "github.com/samuelbagattin/grpc-chat/proto"
+	pb "github.com/SamuelBagattin/grpc-chat/proto"
 )
 
 const (

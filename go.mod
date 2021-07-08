@@ -1,4 +1,4 @@
-module github.com/samuelbagattin/grpc-chat
+module github.com/SamuelBagattin/grpc-chat
 
 go 1.16
 

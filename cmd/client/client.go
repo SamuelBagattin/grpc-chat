@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	pb "github.com/samuelbagattin/grpc-chat/proto"
+	pb "github.com/SamuelBagattin/grpc-chat/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"io"
