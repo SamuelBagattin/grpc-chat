@@ -4,7 +4,7 @@
 // 	protoc        v3.17.3
 // source: proto/greeter.proto
 
-package test
+package proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -20,18 +20,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The request message containing the user's name.
-type Message struct {
+type Ok struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name    string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Ok bool `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
 }
 
-func (x *Message) Reset() {
-	*x = Message{}
+func (x *Ok) Reset() {
+	*x = Ok{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_proto_greeter_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -39,13 +37,13 @@ func (x *Message) Reset() {
 	}
 }
 
-func (x *Message) String() string {
+func (x *Ok) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Message) ProtoMessage() {}
+func (*Ok) ProtoMessage() {}
 
-func (x *Message) ProtoReflect() protoreflect.Message {
+func (x *Ok) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_greeter_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -57,21 +55,312 @@ func (x *Message) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Message.ProtoReflect.Descriptor instead.
-func (*Message) Descriptor() ([]byte, []int) {
+// Deprecated: Use Ok.ProtoReflect.Descriptor instead.
+func (*Ok) Descriptor() ([]byte, []int) {
 	return file_proto_greeter_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Message) GetName() string {
+func (x *Ok) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
+type ClientInfos struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ClientUid string `protobuf:"bytes,1,opt,name=client_uid,json=clientUid,proto3" json:"client_uid,omitempty"`
+}
+
+func (x *ClientInfos) Reset() {
+	*x = ClientInfos{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_greeter_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ClientInfos) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClientInfos) ProtoMessage() {}
+
+func (x *ClientInfos) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_greeter_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClientInfos.ProtoReflect.Descriptor instead.
+func (*ClientInfos) Descriptor() ([]byte, []int) {
+	return file_proto_greeter_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ClientInfos) GetClientUid() string {
+	if x != nil {
+		return x.ClientUid
+	}
+	return ""
+}
+
+type SendMessageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ClientUid string `protobuf:"bytes,1,opt,name=client_uid,json=clientUid,proto3" json:"client_uid,omitempty"`
+	Content   string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+}
+
+func (x *SendMessageRequest) Reset() {
+	*x = SendMessageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_greeter_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SendMessageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SendMessageRequest) ProtoMessage() {}
+
+func (x *SendMessageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_greeter_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SendMessageRequest.ProtoReflect.Descriptor instead.
+func (*SendMessageRequest) Descriptor() ([]byte, []int) {
+	return file_proto_greeter_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *SendMessageRequest) GetClientUid() string {
+	if x != nil {
+		return x.ClientUid
+	}
+	return ""
+}
+
+func (x *SendMessageRequest) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+type ReceiveMessageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name    string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+}
+
+func (x *ReceiveMessageResponse) Reset() {
+	*x = ReceiveMessageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_greeter_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReceiveMessageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReceiveMessageResponse) ProtoMessage() {}
+
+func (x *ReceiveMessageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_greeter_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReceiveMessageResponse.ProtoReflect.Descriptor instead.
+func (*ReceiveMessageResponse) Descriptor() ([]byte, []int) {
+	return file_proto_greeter_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ReceiveMessageResponse) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *Message) GetContent() string {
+func (x *ReceiveMessageResponse) GetContent() string {
 	if x != nil {
 		return x.Content
+	}
+	return ""
+}
+
+type RegisterClientRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserName string `protobuf:"bytes,1,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
+}
+
+func (x *RegisterClientRequest) Reset() {
+	*x = RegisterClientRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_greeter_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RegisterClientRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterClientRequest) ProtoMessage() {}
+
+func (x *RegisterClientRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_greeter_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterClientRequest.ProtoReflect.Descriptor instead.
+func (*RegisterClientRequest) Descriptor() ([]byte, []int) {
+	return file_proto_greeter_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RegisterClientRequest) GetUserName() string {
+	if x != nil {
+		return x.UserName
+	}
+	return ""
+}
+
+type SubscribeToNewcomersRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ClientUid string `protobuf:"bytes,1,opt,name=client_uid,json=clientUid,proto3" json:"client_uid,omitempty"`
+}
+
+func (x *SubscribeToNewcomersRequest) Reset() {
+	*x = SubscribeToNewcomersRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_greeter_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SubscribeToNewcomersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubscribeToNewcomersRequest) ProtoMessage() {}
+
+func (x *SubscribeToNewcomersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_greeter_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubscribeToNewcomersRequest.ProtoReflect.Descriptor instead.
+func (*SubscribeToNewcomersRequest) Descriptor() ([]byte, []int) {
+	return file_proto_greeter_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *SubscribeToNewcomersRequest) GetClientUid() string {
+	if x != nil {
+		return x.ClientUid
+	}
+	return ""
+}
+
+type Newcomer struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *Newcomer) Reset() {
+	*x = Newcomer{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_greeter_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Newcomer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Newcomer) ProtoMessage() {}
+
+func (x *Newcomer) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_greeter_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Newcomer.ProtoReflect.Descriptor instead.
+func (*Newcomer) Descriptor() ([]byte, []int) {
+	return file_proto_greeter_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Newcomer) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -80,18 +369,55 @@ var File_proto_greeter_proto protoreflect.FileDescriptor
 
 var file_proto_greeter_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x72, 0x65, 0x65, 0x74, 0x65, 0x72, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0a, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c,
-	0x64, 0x22, 0x37, 0x0a, 0x07, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x12, 0x0a, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x32, 0x49, 0x0a, 0x0f, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x36, 0x0a,
-	0x04, 0x43, 0x68, 0x61, 0x74, 0x12, 0x13, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72,
-	0x6c, 0x64, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x13, 0x2e, 0x68, 0x65, 0x6c,
-	0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22,
-	0x00, 0x28, 0x01, 0x30, 0x01, 0x42, 0x20, 0x5a, 0x1e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x6d, 0x75, 0x65, 0x6c, 0x62, 0x61, 0x67, 0x61, 0x74, 0x74,
-	0x69, 0x6e, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x09, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x63, 0x68, 0x61, 0x74,
+	0x22, 0x14, 0x0a, 0x02, 0x4f, 0x6b, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b, 0x22, 0x2c, 0x0a, 0x0b, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74,
+	0x49, 0x6e, 0x66, 0x6f, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f,
+	0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e,
+	0x74, 0x55, 0x69, 0x64, 0x22, 0x4d, 0x0a, 0x12, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6c,
+	0x69, 0x65, 0x6e, 0x74, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x55, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e,
+	0x74, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x22, 0x46, 0x0a, 0x16, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x22, 0x34, 0x0a, 0x15, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4e, 0x61, 0x6d,
+	0x65, 0x22, 0x3c, 0x0a, 0x1b, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f,
+	0x4e, 0x65, 0x77, 0x63, 0x6f, 0x6d, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x5f, 0x75, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x55, 0x69, 0x64, 0x22,
+	0x1e, 0x0a, 0x08, 0x4e, 0x65, 0x77, 0x63, 0x6f, 0x6d, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x32,
+	0xcc, 0x02, 0x0a, 0x0f, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x12, 0x40, 0x0a, 0x0c, 0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x73, 0x12, 0x1d, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e,
+	0x53, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x0d, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e, 0x4f,
+	0x6b, 0x22, 0x00, 0x28, 0x01, 0x12, 0x50, 0x0a, 0x0f, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x12, 0x16, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f,
+	0x63, 0x68, 0x61, 0x74, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73,
+	0x1a, 0x21, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e, 0x52, 0x65, 0x63,
+	0x65, 0x69, 0x76, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x4c, 0x0a, 0x0e, 0x52, 0x65, 0x67, 0x69, 0x73,
+	0x74, 0x65, 0x72, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x20, 0x2e, 0x67, 0x72, 0x70, 0x63,
+	0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x43, 0x6c,
+	0x69, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x72,
+	0x70, 0x63, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x6e,
+	0x66, 0x6f, 0x73, 0x22, 0x00, 0x12, 0x57, 0x0a, 0x14, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
+	0x62, 0x65, 0x54, 0x6f, 0x4e, 0x65, 0x77, 0x63, 0x6f, 0x6d, 0x65, 0x72, 0x73, 0x12, 0x26, 0x2e,
+	0x67, 0x72, 0x70, 0x63, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72,
+	0x69, 0x62, 0x65, 0x54, 0x6f, 0x4e, 0x65, 0x77, 0x63, 0x6f, 0x6d, 0x65, 0x72, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x13, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x63, 0x68, 0x61,
+	0x74, 0x2e, 0x4e, 0x65, 0x77, 0x63, 0x6f, 0x6d, 0x65, 0x72, 0x22, 0x00, 0x30, 0x01, 0x42, 0x2b,
+	0x5a, 0x29, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x6d,
+	0x75, 0x65, 0x6c, 0x62, 0x61, 0x67, 0x61, 0x74, 0x74, 0x69, 0x6e, 0x2f, 0x67, 0x72, 0x70, 0x63,
+	0x2d, 0x63, 0x68, 0x61, 0x74, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -106,15 +432,27 @@ func file_proto_greeter_proto_rawDescGZIP() []byte {
 	return file_proto_greeter_proto_rawDescData
 }
 
-var file_proto_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_proto_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_proto_greeter_proto_goTypes = []interface{}{
-	(*Message)(nil), // 0: helloworld.Message
+	(*Ok)(nil),                          // 0: grpc_chat.Ok
+	(*ClientInfos)(nil),                 // 1: grpc_chat.ClientInfos
+	(*SendMessageRequest)(nil),          // 2: grpc_chat.SendMessageRequest
+	(*ReceiveMessageResponse)(nil),      // 3: grpc_chat.ReceiveMessageResponse
+	(*RegisterClientRequest)(nil),       // 4: grpc_chat.RegisterClientRequest
+	(*SubscribeToNewcomersRequest)(nil), // 5: grpc_chat.SubscribeToNewcomersRequest
+	(*Newcomer)(nil),                    // 6: grpc_chat.Newcomer
 }
 var file_proto_greeter_proto_depIdxs = []int32{
-	0, // 0: helloworld.MessagesService.Chat:input_type -> helloworld.Message
-	0, // 1: helloworld.MessagesService.Chat:output_type -> helloworld.Message
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 0: grpc_chat.MessagesService.SendMessages:input_type -> grpc_chat.SendMessageRequest
+	1, // 1: grpc_chat.MessagesService.ReceiveMessages:input_type -> grpc_chat.ClientInfos
+	4, // 2: grpc_chat.MessagesService.RegisterClient:input_type -> grpc_chat.RegisterClientRequest
+	5, // 3: grpc_chat.MessagesService.SubscribeToNewcomers:input_type -> grpc_chat.SubscribeToNewcomersRequest
+	0, // 4: grpc_chat.MessagesService.SendMessages:output_type -> grpc_chat.Ok
+	3, // 5: grpc_chat.MessagesService.ReceiveMessages:output_type -> grpc_chat.ReceiveMessageResponse
+	1, // 6: grpc_chat.MessagesService.RegisterClient:output_type -> grpc_chat.ClientInfos
+	6, // 7: grpc_chat.MessagesService.SubscribeToNewcomers:output_type -> grpc_chat.Newcomer
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -127,7 +465,79 @@ func file_proto_greeter_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_proto_greeter_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Message); i {
+			switch v := v.(*Ok); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_greeter_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClientInfos); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_greeter_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SendMessageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_greeter_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReceiveMessageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_greeter_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RegisterClientRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_greeter_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SubscribeToNewcomersRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_greeter_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Newcomer); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -145,7 +555,7 @@ func file_proto_greeter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_greeter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
